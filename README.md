@@ -144,8 +144,8 @@ Health_Insurance_Cross_Sell_Prediction/
 
 **Hritik Rai**
 
-- LinkedIn: [https://www.linkedin.com/in/hritik-rai-/]
-- Certification Link: [https://verified.sertifier.com/en/verify/67232886872076/]
+- (LinkedIn):[https://www.linkedin.com/in/hritik-rai-/]
+- (Certification Link):[https://verified.sertifier.com/en/verify/67232886872076/]
 
 ---
 
