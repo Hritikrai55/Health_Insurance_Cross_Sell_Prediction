@@ -1,38 +1,158 @@
-# Health_Insurance_Cross_Sell_Prediction
+# Health Insurance Cross Sell Prediction
 
-Business problem: Our client is an Insurance company that has provided Health Insurance to its customers, now they need our help in building a model to predict whether the policyholders (customers) from past year will also be interested in Vehicle Insurance provided by the company. In order to predict wheather the customer would be interested in Vehicle insurance, we have information about demographics (gender, age, region code type), Vehicles (Vehicle Age, Damage), Policy (Premium, sourcing channel) etc.
+## 🎯 Project Overview
 
+This project aims to build a machine learning model that predicts whether existing health insurance policyholders will be interested in vehicle insurance offered by the same company. The solution helps insurance companies optimize their cross-selling strategies and improve conversion rates.
 
-First we import the necessary libraries and look at our data and its characteristics. We have a dataset of 3,81,109 rows and 12 columns with no duplicate/missing data. Next we study the features thoroughly and the data it represents.
+## 💼 Business Problem
 
+An insurance company that provides health insurance to its customers needs to predict whether policyholders from the past year will also be interested in vehicle insurance. This prediction model will help the company:
 
-In data wrangling, we first create a backup dataset under the name, 'df_copy'. Then we drop the 'id' column as it is not much of use for us. Later, we convert the values in categorical columns 'Driving_License' & 'Previously_Insured' from 1 & 0 to Yes and No for better visualization. We covert 'Region_Code' , 'Annual_Premium' & 'Policy_Sales_Channel' columns from float to int datatype to save space.
+- Improve cross-selling strategies
+- Increase conversion rates
+- Reduce customer acquisition costs
+- Optimize marketing campaigns
+- Enhance customer targeting
 
+## 📊 Dataset Information
 
-Later we visualize our data and perform univariate analysis, bivariate analysis with respect to the dependant variable. The insights found from each chart is described. Finally, we visualize the correlation heatmap and pairplot for better understanding.
+- **Size:** 381,109 rows × 12 columns
+- **Data Quality:** No missing values or duplicates
+- **Target Variable:** Response (binary: interested/not interested in vehicle insurance)
 
+### Features Include:
+- **Demographics:** Gender, Age, Region Code
+- **Vehicle Information:** Vehicle Age, Vehicle Damage history
+- **Policy Details:** Annual Premium, Policy Sales Channel, Vintage
+- **Insurance History:** Driving License status, Previously Insured status
 
-Based on our visualizations, we formulate 3 hypothetical statements and perform hypothesis tests. The statements are:
+## 🚀 Installation & Setup
 
-The average annual premium for a vehicle insurance is greater than 20,000.
-The average age of the customer is greater than 30.
-The Standard deviation of annual premium is 10,000.
+### Prerequisites
+- Python 3.7 or higher
+- Jupyter Notebook or Google Colab
 
+### Required Libraries
+```bash
+pip install numpy pandas matplotlib seaborn scipy scikit-learn xgboost imbalanced-learn mlxtend
+```
 
-Now was the time for feature engineering. We handled the outliers in 'Annual_Premium' column by using the capping method. 
-In the later boxplot we could visualize all the outliers removed. We wouldn't provide vehicle insurance to someone who didn't have a license to drive. Therefore, we dropped 'driving license' column as they are not providing any valuable information.
-Furthur, we performed one hot encoding on our categorical features with dropping the first column being true.
-The data was imbalanced, where the dependant variable, 'Response' had 46,710 label-1 entries and 3,34,399 label-0 enteries. This imbalanced dataset was balanced using SMOTE method.
-Next we scaled our data using MinMax scaler.
-Finally we split our data into train and test in 80-20 ratio.
+### Installation Steps
+1. Clone this repository:
+```bash
+git clone https://github.com/Hritikrai55/Health_Insurance_Cross_Sell_Prediction.git
+cd Health_Insurance_Cross_Sell_Prediction
+```
 
+2. Open the Jupyter notebook:
+```bash
+jupyter notebook Health_Insurance_Cross_Sell_Prediction.ipynb
+```
 
-The data was ready to fit into a machine learning model.
-First, we used Logistic Regression Classifier. We got f1 score as 82%.
-Second, we used Random Forest Classifier. We got f1 score as 87.32%. We used GridSearchCV for hyperparameter tuning in which we saw a slight improvement.
-Third, We used XG-Boost with GridSearchCV for hyperparameter tuning. We got a f1 score as 84%.
+## 🔧 Usage
 
+1. **Data Loading:** Load the training dataset (`TRAIN-HEALTH INSURANCE CROSS SELL PREDICTION.csv`)
+2. **Run Analysis:** Execute all cells in the Jupyter notebook sequentially
+3. **Model Training:** The notebook will automatically train and evaluate multiple models
+4. **Results:** View model performance metrics and predictions
 
-Out of all above models Random forest Classifier gives the highest F1-score of 87% for test Set. No overfitting is seen.
+### Key Sections in the Notebook:
+- Data Exploration and Analysis
+- Data Preprocessing and Feature Engineering
+- Hypothesis Testing
+- Model Training and Evaluation
+- Feature Importance Analysis
 
-So finally, the insurance company can deploy a machine learning model that uses Random Forest Classifier to predict the wheather the already existing health insurance customer would be interested in a vehicle insurance product. The company can improve the conversion rate by taking steps to encourage people to buy vehicle insurance by offering some incentives/ease of application & claim settlement process. Cross selling might be an effective way to increase the profits since the customer acquisition cost still remains 0.
+## 📁 Project Structure
+
+```
+Health_Insurance_Cross_Sell_Prediction/
+├── Health_Insurance_Cross_Sell_Prediction.ipynb    # Main analysis notebook
+├── TRAIN-HEALTH INSURANCE CROSS SELL PREDICTION.csv # Dataset
+├── README.md                                        # Project documentation
+```
+
+## 🔬 Methodology
+
+### 1. Data Analysis & Preprocessing
+- Comprehensive Exploratory Data Analysis (EDA)
+- Univariate and bivariate analysis
+- Correlation analysis and visualization
+- Outlier detection and treatment using capping method
+- Feature engineering and encoding
+
+### 2. Data Balancing
+- **Problem:** Imbalanced dataset (46,710 positive vs 334,399 negative samples)
+- **Solution:** SMOTE (Synthetic Minority Oversampling Technique)
+
+### 3. Feature Engineering
+- One-hot encoding for categorical variables
+- MinMax scaling for numerical features
+- Feature selection based on importance
+- Removal of non-informative features
+
+### 4. Model Development
+- Train-test split (80-20 ratio)
+- Multiple algorithm comparison
+- Hyperparameter tuning using GridSearchCV
+- Cross-validation for model validation
+
+## 📈 Model Performance
+
+| Model | F1-Score | Key Features |
+|-------|----------|--------------|
+| **Random Forest** | **87.32%** | Best performing model with hyperparameter tuning |
+| XGBoost | 84% | Gradient boosting with GridSearchCV |
+| Logistic Regression | 82% | Baseline linear model |
+
+### Best Model: Random Forest Classifier
+- **F1-Score:** 87%
+- **Status:** No overfitting observed
+- **Hyperparameter Tuning:** GridSearchCV applied
+
+## 💡 Key Insights
+
+### Feature Importance (Top 5):
+1. **Previously_Insured_yes** (0.20) - Most important predictor
+2. **Vintage** (0.175) - Customer relationship duration
+3. **Annual_Premium** (0.15) - Premium amount significance
+4. **Age** (0.135) - Customer age factor
+5. **Vehicle_Damage_yes** (0.125) - Vehicle damage history
+
+### Hypothesis Testing Results:
+1. ✅ Average annual premium > ₹20,000
+2. ✅ Average customer age > 30 years  
+3. ✅ Standard deviation of annual premium = ₹10,000
+
+### Business Recommendations:
+- Target customers who were previously insured
+- Focus on customers with vehicle damage history
+- Consider age and premium amount in targeting strategies
+- Implement incentives for cross-selling vehicle insurance
+
+## 🛠 Technologies Used
+
+- **Programming:** Python
+- **Data Processing:** Pandas, NumPy
+- **Visualization:** Matplotlib, Seaborn
+- **Machine Learning:** Scikit-learn, XGBoost
+- **Data Balancing:** Imbalanced-learn (SMOTE)
+- **Statistical Analysis:** SciPy
+- **Model Evaluation:** MLxtend
+
+## 👨‍💻 Author
+
+**Hritik Rai**
+
+- LinkedIn: [https://www.linkedin.com/in/hritik-rai-/]
+- Certification Link: [https://verified.sertifier.com/en/verify/67232886872076/]
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+*This project demonstrates end-to-end machine learning workflow for binary classification with comprehensive data analysis, feature engineering, and model comparison.*
